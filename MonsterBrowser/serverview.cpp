@@ -1,4 +1,5 @@
 #include "serverview.h"
+#include "colorednames.h"
 #include "servermodel.h"
 #include <array>
 using namespace std;
@@ -16,7 +17,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const
     {
-        if (option.state & QStyle::State_Selected) {
+        if (0 && option.state & QStyle::State_Selected) {
             // Use default rendering to make it more readable.
             QStyledItemDelegate::paint(painter, option, index);
         }
@@ -24,18 +25,20 @@ public:
             QRect rect(option.rect);
             // Not sure what the correct way to get proper indentation is.
             rect.setLeft(rect.left() + 3);
-            QString text(index.model()->data(index).toString());
+            //QString text(index.model()->data(index).toString());
+            QString rawName(
+                      "^9gg.^4ill^7wie^1ckz^9.net^6 { ^5le frag courtois^6 }");
+            QString name(stripColorCodes(rawName));
             QString subString;
-            static array<QColor, 5> colors({Qt::red, Qt::blue, Qt::darkGreen,
-                                            Qt::darkYellow, Qt::darkBlue});
 
             painter->save();
             /*if (option.state & QStyle::State_Selected)
                 painter->fillRect(option.rect, option.palette.highlight());*/
 
-            for (int i = 0; i < text.size(); i++) {
-                subString.setRawData(&text.constData()[i], 1);
-                painter->setPen(colors[i % colors.size()]);
+            for (const auto& range: parseColors(rawName, true)) {
+                subString.setRawData(&name.constData()[range.start],
+                                     range.end - range.start + 1);
+                painter->setPen(range.color);
                 painter->drawText(rect, Qt::AlignVCenter, subString);
                 rect.setLeft(rect.left() +
                              painter->fontMetrics().width(subString));
@@ -57,6 +60,7 @@ ServerView::ServerView(QWidget* parent)
     setAllColumnsShowFocus(true);
     setItemDelegateForColumn(1, new ServerItemDelegate(this));
     setModel(new ServerModel(this));
+    setColumnWidth(1, 250);
 }
 
 

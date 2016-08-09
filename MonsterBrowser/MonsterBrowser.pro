@@ -15,8 +15,10 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     serverview.cpp \
-    servermodel.cpp
+    servermodel.cpp \
+    colorednames.cpp
 
 HEADERS  += mainwindow.h \
     serverview.h \
-    servermodel.h
+    servermodel.h \
+    colorednames.h

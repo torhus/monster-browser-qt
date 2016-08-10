@@ -1,13 +1,17 @@
 #ifndef SERVERMODEL_H
 #define SERVERMODEL_H
 
+#include "masterlist.h"
+#include <memory>
 #include <QAbstractItemModel>
+
 
 class ServerModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
     ServerModel(QObject* parent);
+    virtual ~ServerModel();
     QModelIndex index(int row, int column,
                       const QModelIndex& parent = QModelIndex())
                       const override;
@@ -18,6 +22,10 @@ public:
                                                                       override;
     QVariant headerData(int section, Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const override;
+    MasterList& master() const { return *master_; }
+
+private:
+    std::unique_ptr<MasterList> master_;
 };
 
 #endif // SERVERMODEL_H

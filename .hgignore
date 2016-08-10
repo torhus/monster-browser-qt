@@ -1,2 +1,6 @@
 syntax: glob
 build-*
+*.exe
+*.pdb
+*.ilk
+*.dll

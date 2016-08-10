@@ -114,9 +114,11 @@ vector<ColorRange> parseColors(const QString& s, bool useEtColors)
         }
     }
 
-    // terminate the last range
-    if (!ranges.empty())
-        ranges.back().end = cleanLength - 1;
+    if (ranges.empty())
+        ranges.push_back(range);
+
+    // Terminate the last range.
+    ranges.back().end = cleanLength - 1;
 
     return ranges;
 }

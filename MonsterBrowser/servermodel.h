@@ -12,6 +12,8 @@ class ServerModel : public QAbstractItemModel
 public:
     ServerModel(QObject* parent);
     virtual ~ServerModel();
+
+    // Overriden methods.
     QModelIndex index(int row, int column,
                       const QModelIndex& parent = QModelIndex())
                       const override;
@@ -22,10 +24,13 @@ public:
                                                                       override;
     QVariant headerData(int section, Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const override;
+    void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
+
+    // Other methods.
     MasterList& master() const { return *master_; }
 
 private:
-    std::unique_ptr<MasterList> master_;
+    std::shared_ptr<MasterList> master_;
 };
 
 #endif // SERVERMODEL_H

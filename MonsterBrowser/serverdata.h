@@ -17,7 +17,8 @@ namespace ServerColumn {
 
 
 /* Stores all data for a server. */
-struct ServerData {
+struct ServerData
+{
     // server name, with any color codes intact
     QString rawName;
     // name (without color codes), ping, playercount, map, etc.
@@ -34,7 +35,24 @@ struct ServerData {
     bool persistent;
     QString protocolVersion;
 
+    int humanCount() const;
+    int botCount() const;
+    int maxClients() const;
     void print() const;
 };
+
+
+// For sorting ServerData objects.
+struct ServerLessThan
+{
+    ServerLessThan(int column, bool reverse)
+        : col_(column), rev_(reverse) { }
+    bool operator()(const ServerData& a, const ServerData& b) const;
+
+private:
+    int col_;
+    bool rev_;
+};
+
 
 #endif // SERVERDATA_H

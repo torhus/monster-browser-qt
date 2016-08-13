@@ -1,11 +1,13 @@
 #include "servermodel.h"
+using namespace std;
+
 
 const int NUM_COLUMNS = 8;
 
 
 ServerModel::ServerModel(QObject* parent) : QAbstractItemModel(parent)
 {
-    master_ = std::make_unique<MasterList>();
+    master_ = make_shared<MasterList>();
     master_->load("68");
 }
 
@@ -65,4 +67,13 @@ QVariant ServerModel::headerData(int section, Qt::Orientation, int role) const
         return h[section];
     else
         return QVariant();
+}
+
+
+void ServerModel::sort(int column, Qt::SortOrder order)
+{
+    emit layoutAboutToBeChanged();
+    stable_sort(master_->begin(), master_->end(),
+                ServerLessThan(column, order == Qt::DescendingOrder));
+    emit layoutChanged();
 }

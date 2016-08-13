@@ -59,8 +59,10 @@ ServerView::ServerView(QWidget* parent)
     setAlternatingRowColors(true);
     setSelectionMode(ExtendedSelection);
     setAllColumnsShowFocus(true);
-    header()->setSectionsMovable(false);
+    setSortingEnabled(true);
     setItemDelegateForColumn(1, new ServerItemDelegate(this));
+    header()->setSectionsMovable(false);
+    header()->setSortIndicator(ServerColumn::NAME, Qt::AscendingOrder);
     setModel(new ServerModel(this));
 
     // Temporary solution.

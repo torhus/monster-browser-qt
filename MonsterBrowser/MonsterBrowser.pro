@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+# Handy for testing and debugging purposes.
+#CONFIG   += console
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

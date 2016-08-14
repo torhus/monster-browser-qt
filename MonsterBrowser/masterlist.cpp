@@ -10,7 +10,7 @@ using namespace std;
 
 void MasterList::load(QString defaultProtocolVersion)
 {
-    QString fileName("master3.idsoftware.com.xml");
+    QString fileName("master.smokin-guns.org.xml");
     QFile f(fileName);
 
     defaultProtocolVersion_ = defaultProtocolVersion;

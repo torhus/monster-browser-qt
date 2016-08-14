@@ -21,11 +21,13 @@ SOURCES += main.cpp\
     servermodel.cpp \
     colorednames.cpp \
     masterlist.cpp \
-    serverdata.cpp
+    serverdata.cpp \
+    maintoolbar.cpp
 
 HEADERS  += mainwindow.h \
     serverview.h \
     servermodel.h \
     colorednames.h \
     masterlist.h \
-    serverdata.h
+    serverdata.h \
+    maintoolbar.h

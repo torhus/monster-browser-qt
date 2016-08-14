@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "serverview.h"
+#include "maintoolbar.h"
 #include <QMainWindow>
 
 
@@ -14,6 +15,7 @@ public:
 
 private:
     ServerView* serverView_;
+    MainToolBar* toolBar_;
 };
 
 #endif // MAINWINDOW_H

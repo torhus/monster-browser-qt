@@ -13,6 +13,9 @@ MainWindow::MainWindow()
     serverView_ = new ServerView(centralWidget);
     mainLayout->addWidget(serverView_, 0, 0);
     setCentralWidget(centralWidget);
+
+    toolBar_ = new MainToolBar(this);
+    addToolBar(toolBar_);
 }
 
 MainWindow::~MainWindow()

@@ -22,7 +22,9 @@ SOURCES += main.cpp\
     colorednames.cpp \
     masterlist.cpp \
     serverdata.cpp \
-    maintoolbar.cpp
+    maintoolbar.cpp \
+    serveractions.cpp \
+    workerobject.cpp
 
 HEADERS  += mainwindow.h \
     serverview.h \
@@ -30,4 +32,6 @@ HEADERS  += mainwindow.h \
     colorednames.h \
     masterlist.h \
     serverdata.h \
-    maintoolbar.h
+    maintoolbar.h \
+    serveractions.h \
+    workerobject.h

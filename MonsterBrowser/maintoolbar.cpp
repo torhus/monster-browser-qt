@@ -1,4 +1,5 @@
 #include "maintoolbar.h"
+#include "serveractions.h"
 #include <QHBoxLayout>
 
 
@@ -6,7 +7,9 @@ MainToolBar::MainToolBar(QWidget* parent) : QToolBar(parent)
 {
     setMovable(false);
 
-    addAction("Check for new");
+    QAction* action = addAction("Check for new");
+    connect(action, &QAction::triggered, serverActions,
+            &ServerActions::checkForNew);
     addAction("Refresh");
     addAction("Add...");
     addAction("Settings");

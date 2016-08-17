@@ -4,6 +4,7 @@
 #include <utility>
 using namespace std;
 #include <QFile>
+#include <QMessageBox>
 #include <QtDebug>
 #include <QXmlStreamReader>
 
@@ -16,7 +17,9 @@ void MasterList::load(QString defaultProtocolVersion)
     defaultProtocolVersion_ = defaultProtocolVersion;
 
     if (!f.open(QFile::ReadOnly)) {
-        qDebug() << "Can't open " << fileName << endl;
+        QMessageBox::critical(nullptr, "Error",
+                              QString("Error while trying to open %1:\n%2")
+                              .arg(fileName).arg(f.errorString()));
         return;
     }
 
@@ -38,9 +41,10 @@ void MasterList::load(QString defaultProtocolVersion)
     }
 
     if (xml.hasError()) {
-        qDebug() << "Error at line " << xml.lineNumber() <<
-                    " while loading " << fileName << ":\n" <<
-                    xml.errorString();
+        QMessageBox::critical(nullptr, "Error",
+                           QString("Error at line %1 while loading %2:\n %3" )
+                              .arg(xml.lineNumber()).arg(fileName)
+                              .arg(xml.errorString()));
     }
 }
 

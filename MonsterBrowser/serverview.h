@@ -10,9 +10,7 @@ class ServerView : public QTreeView
 public:
     ServerView(QWidget* parent);
     ~ServerView() override;
-
-private:
-
+    void setModel(QAbstractItemModel *model) override;
 };
 
 #endif // SERVERVIEW_H

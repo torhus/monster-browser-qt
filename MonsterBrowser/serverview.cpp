@@ -63,17 +63,27 @@ ServerView::ServerView(QWidget* parent)
     setItemDelegateForColumn(1, new ServerItemDelegate(this));
     header()->setSectionsMovable(false);
     header()->setSortIndicator(ServerColumn::NAME, Qt::AscendingOrder);
-    setModel(new ServerModel(this));
-
-    // Temporary solution.
-    int widths[8] = {27, 250, 21, 32, 50, 40, 90, 130};
-    for (int i = 0; i < 8; i++) {
-        setColumnWidth(i, widths[i]);
-    }
 }
 
 
 ServerView::~ServerView()
 {
 
+}
+
+
+void ServerView::setModel(QAbstractItemModel *model)
+{
+    static bool firstTime = true;
+
+    QTreeView::setModel(model);
+
+    if (firstTime) {
+        // Temporary solution.
+        firstTime = false;
+        int widths[8] = {27, 250, 21, 32, 50, 40, 90, 130};
+        for (int i = 0; i < 8; i++) {
+            setColumnWidth(i, widths[i]);
+        }
+    }
 }

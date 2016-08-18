@@ -5,10 +5,9 @@ using namespace std;
 const int NUM_COLUMNS = 8;
 
 
-ServerModel::ServerModel(QObject* parent) : QAbstractItemModel(parent)
+ServerModel::ServerModel(MasterList* master) : master_(master)
 {
-    master_ = make_shared<MasterList>();
-    master_->load("68");
+
 }
 
 

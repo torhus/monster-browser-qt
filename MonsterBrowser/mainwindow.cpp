@@ -3,6 +3,9 @@
 #include <QGridLayout>
 
 
+ServerView* serverView;
+
+
 MainWindow::MainWindow()
     : QMainWindow(0)
 {
@@ -11,6 +14,7 @@ MainWindow::MainWindow()
     auto centralWidget = new QWidget(this);
     auto mainLayout = new QGridLayout(centralWidget);
     serverView_ = new ServerView(centralWidget);
+    serverView = serverView_;
     mainLayout->addWidget(serverView_, 0, 0);
     setCentralWidget(centralWidget);
 

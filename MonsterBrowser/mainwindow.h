@@ -18,4 +18,6 @@ private:
     MainToolBar* toolBar_;
 };
 
+extern ServerView* serverView;
+
 #endif // MAINWINDOW_H

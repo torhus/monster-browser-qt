@@ -2,7 +2,6 @@
 #define SERVERMODEL_H
 
 #include "masterlist.h"
-#include <memory>
 #include <QAbstractItemModel>
 
 
@@ -10,7 +9,7 @@ class ServerModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
-    ServerModel(QObject* parent);
+    ServerModel(MasterList* master);
     virtual ~ServerModel();
 
     // Overriden methods.
@@ -30,7 +29,7 @@ public:
     MasterList& master() const { return *master_; }
 
 private:
-    std::shared_ptr<MasterList> master_;
+    MasterList* master_;
 };
 
 #endif // SERVERMODEL_H

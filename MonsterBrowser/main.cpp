@@ -1,5 +1,8 @@
 #include "mainwindow.h"
+#include "masterlist.h"
 #include "serveractions.h"
+#include "servermodel.h"
+#include "serverview.h"
 #include <QApplication>
 
 
@@ -17,6 +20,11 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
+
+    // Testing.
+    MasterList master;
+    master.load("68");
+    serverView->setModel(new ServerModel(&master));
 
     return a.exec();
 }

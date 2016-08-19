@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     w.show();
 
     // Testing.
-    MasterList master;
+    MasterList master("master.smokin-guns.org");
     master.load("68");
     serverView->setModel(new ServerModel(&master));
 

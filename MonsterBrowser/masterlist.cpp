@@ -9,17 +9,22 @@ using namespace std;
 #include <QXmlStreamReader>
 
 
-void MasterList::load(QString defaultProtocolVersion)
+MasterList::MasterList(const QString& server) : server_(server)
 {
-    QString fileName("master.smokin-guns.org.xml");
-    QFile f(fileName);
+    fileName_ = QString(server_ + ".xml").replace(':', '_');
+}
+
+
+void MasterList::load(const QString& defaultProtocolVersion)
+{
+    QFile f(fileName_);
 
     defaultProtocolVersion_ = defaultProtocolVersion;
 
     if (!f.open(QFile::ReadOnly)) {
         QMessageBox::critical(nullptr, "Error",
                               QString("Error while trying to open %1:\n%2")
-                              .arg(fileName).arg(f.errorString()));
+                              .arg(fileName_).arg(f.errorString()));
         return;
     }
 
@@ -43,7 +48,7 @@ void MasterList::load(QString defaultProtocolVersion)
     if (xml.hasError()) {
         QMessageBox::critical(nullptr, "Error",
                            QString("Error at line %1 while loading %2:\n %3" )
-                              .arg(xml.lineNumber()).arg(fileName)
+                              .arg(xml.lineNumber()).arg(fileName_)
                               .arg(xml.errorString()));
     }
 }

@@ -10,9 +10,14 @@
 class MasterList : public QVector<ServerData>
 {
 public:
-    void load(QString defaultProtocolVersion);
+    MasterList(const QString& server);
+    QString server() const { return server_; }
+    QString fileName() const { return fileName_; }
+    void load(const QString& defaultProtocolVersion);
 
 private:
+    QString server_;
+    QString fileName_;
     QString defaultProtocolVersion_;
 
     void startServer(QXmlStreamAttributes&);

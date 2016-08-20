@@ -4,6 +4,9 @@
 #include <QObject>
 
 
+/**
+ * Does all work that happens in the background thread.
+ */
 class WorkerObject : public QObject
 {
     Q_OBJECT

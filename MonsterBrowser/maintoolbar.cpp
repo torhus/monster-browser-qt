@@ -10,9 +10,11 @@ MainToolBar::MainToolBar(QWidget* parent) : QToolBar(parent)
     QAction* action = addAction("Check for new");
     connect(action, &QAction::triggered, serverActions,
             &ServerActions::checkForNew);
-    addAction("Refresh");
-    addAction("Add...");
-    addAction("Settings");
+    action = addAction("Refresh all");
+    connect(action, &QAction::triggered, serverActions,
+            &ServerActions::refreshAll);
+    action = addAction("Add...");
+    action = addAction("Settings");
 
     // Add some space after the buttons.
     QWidget* spacer = new QWidget(this);

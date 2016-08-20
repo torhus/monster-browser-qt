@@ -10,7 +10,7 @@ class ServerActions : public QObject
 {
     Q_OBJECT
 public:
-    enum {actionCheckForNew};
+    enum {actionCheckForNew, actionRefreshAll};
     ServerActions();
     virtual ~ServerActions();
 
@@ -19,6 +19,7 @@ signals:
 
 public slots:
     void checkForNew();
+    void refreshAll();
     void actionFinished();
 
 private:

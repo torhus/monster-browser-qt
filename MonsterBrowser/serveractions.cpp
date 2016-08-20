@@ -3,6 +3,8 @@
  */
 
 #include "serveractions.h"
+#include "mainwindow.h"
+#include "servermodel.h"
 #include <QtDebug>
 
 
@@ -28,6 +30,27 @@ ServerActions::~ServerActions()
 }
 
 
+/**
+ * Refreshes all servers for the current game.
+ */
+void ServerActions::refreshAll()
+{
+    auto model = dynamic_cast<ServerModel*>(serverView->model());
+    QVector<QString> addresses;
+
+    qDebug() << "Refreshing all...";
+    workerObject.abortAction();
+
+    for (const auto& sd: model->master()) {
+        addresses.push_back(sd.server[ServerColumn::ADDRESS]);
+    }
+    emit queueAction(actionRefreshAll);
+}
+
+
+/**
+ * Checks for new servers for the current game.
+ */
 void ServerActions::checkForNew()
 {
     qDebug() << "Checking for new servers...";

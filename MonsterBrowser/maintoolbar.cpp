@@ -6,15 +6,18 @@
 MainToolBar::MainToolBar(QWidget* parent) : QToolBar(parent)
 {
     setMovable(false);
+    setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    setIconSize(QSize(32, 32));
 
-    QAction* action = addAction("Check for new");
+    QAction* action = addAction(QIcon(":/icons/box_download_32.png"),
+                                "Check for new");
     connect(action, &QAction::triggered, serverActions,
             &ServerActions::checkForNew);
-    action = addAction("Refresh all");
+    action = addAction(QIcon(":/icons/refresh_32.png"), "Refresh all");
     connect(action, &QAction::triggered, serverActions,
             &ServerActions::refreshAll);
-    action = addAction("Add...");
-    action = addAction("Settings");
+    action = addAction(QIcon(":/icons/add_32.png"), "Add...");
+    action = addAction(QIcon(":/icons/spanner_32.png"), "Settings");
 
     // Add some space after the buttons.
     QWidget* spacer = new QWidget(this);

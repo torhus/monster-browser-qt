@@ -13,6 +13,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = MonsterBrowser
 TEMPLATE = app
 DESTDIR = ..
+RC_ICONS = ../icons/mb.ico
 
 
 SOURCES += main.cpp\
@@ -35,3 +36,6 @@ HEADERS  += mainwindow.h \
     maintoolbar.h \
     serveractions.h \
     workerobject.h
+
+RESOURCES += \
+    mb.qrc

@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>../icons/add_32.png</file>
+    <file>../icons/box_download_32.png</file>
+    <file>../icons/padlock.png</file>
+    <file>../icons/refresh_32.png</file>
+    <file>../icons/spanner_32.png</file>
+</qresource>
+</RCC>

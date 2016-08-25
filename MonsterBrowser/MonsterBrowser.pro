@@ -38,4 +38,4 @@ HEADERS  += mainwindow.h \
     workerobject.h
 
 RESOURCES += \
-    mb.qrc
+    ../misc/mb.qrc

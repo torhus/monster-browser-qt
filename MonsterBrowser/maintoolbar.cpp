@@ -7,7 +7,7 @@ MainToolBar::MainToolBar(QWidget* parent) : QToolBar(parent)
 {
     setMovable(false);
     setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    setIconSize(QSize(32, 32));
+    setIconSize(QSize(48, 32));
 
     QAction* action = addAction(QIcon(":/icons/box_download_32.png"),
                                 "Check for new");

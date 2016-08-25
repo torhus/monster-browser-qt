@@ -2,6 +2,7 @@
 #include "colorednames.h"
 #include "servermodel.h"
 #include <array>
+#include <cassert>
 using namespace std;
 #include <QHeaderView>
 #include <QPainter>
@@ -72,11 +73,20 @@ ServerView::~ServerView()
 }
 
 
-void ServerView::setModel(QAbstractItemModel *model)
+void ServerView::setModel(QAbstractItemModel* model)
 {
     static bool firstTime = true;
 
     QTreeView::setModel(model);
+
+    if (auto m = dynamic_cast<ServerModel*>(model)) {
+        serverModel_ = m;
+    }
+    else {
+        // Something is very wrong if we get here.
+        assert(m);
+        serverModel_ = nullptr;
+    }
 
     if (firstTime) {
         // Temporary solution.
@@ -86,4 +96,14 @@ void ServerView::setModel(QAbstractItemModel *model)
             setColumnWidth(i, widths[i]);
         }
     }
+}
+
+
+/**
+ * Convenience method for getting the model without having to downcast from
+ * QAbstractItemModel.
+ */
+ServerModel* ServerView::serverModel() const
+{
+    return serverModel_;
 }

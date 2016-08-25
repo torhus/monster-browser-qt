@@ -35,13 +35,12 @@ ServerActions::~ServerActions()
  */
 void ServerActions::refreshAll()
 {
-    auto model = dynamic_cast<ServerModel*>(serverView->model());
     QVector<QString> addresses;
 
     qDebug() << "Refreshing all...";
     workerObject.abortAction();
 
-    for (const auto& sd: model->master()) {
+    for (const auto& sd: serverView->serverModel()->master()) {
         addresses.push_back(sd.server[ServerColumn::ADDRESS]);
     }
     emit queueAction(actionRefreshAll);

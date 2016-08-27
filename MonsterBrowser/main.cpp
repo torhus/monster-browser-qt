@@ -6,17 +6,26 @@
 #include <QApplication>
 
 
+
+
+void shutdownHandler()
+{
+    qInfo("Shutting down...");
+}
+
+
+
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    a.setApplicationName("Monster Browser");
-    a.setApplicationVersion("Qt");
-    a.setApplicationDisplayName(a.applicationName() + " " +
-                                a.applicationVersion());
+    QApplication app(argc, argv);
+    app.setApplicationName("Monster Browser");
+    app.setApplicationVersion("Qt");
+    app.setApplicationDisplayName(app.applicationName() + " " +
+                                  app.applicationVersion());
 
-    // Create this global object here to give it correct lifetime.
-    ServerActions sa;
-    serverActions = &sa;
+    QObject::connect(&app, &QApplication::aboutToQuit, shutdownHandler);
+
+    serverActions = new ServerActions;
 
     MainWindow w;
     w.show();
@@ -26,5 +35,5 @@ int main(int argc, char *argv[])
     master.load("68");
     serverView->setModel(new ServerModel(&master));
 
-    return a.exec();
+    return app.exec();
 }

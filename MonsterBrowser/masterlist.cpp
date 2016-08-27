@@ -6,7 +6,6 @@ using namespace std;
 #include <QElapsedTimer>
 #include <QFile>
 #include <QMessageBox>
-#include <QtDebug>
 #include <QXmlStreamReader>
 
 

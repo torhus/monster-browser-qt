@@ -18,9 +18,10 @@ MasterList::MasterList(const QString& server) : server_(server)
 
 void MasterList::load(const QString& defaultProtocolVersion)
 {
+    qInfo("Opening '%s'...", qUtf8Printable(fileName_));
+
     QElapsedTimer timer;
     timer.start();
-    qInfo("Opening '%s'...", qUtf8Printable(fileName_));
     QFile f(fileName_);
 
     defaultProtocolVersion_ = defaultProtocolVersion;

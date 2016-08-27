@@ -2,7 +2,6 @@
 #include "colorednames.h"
 #include "servermodel.h"
 #include <array>
-#include <cassert>
 using namespace std;
 #include <QHeaderView>
 #include <QPainter>
@@ -84,7 +83,7 @@ void ServerView::setModel(QAbstractItemModel* model)
     }
     else {
         // Something is very wrong if we get here.
-        assert(m);
+        Q_ASSERT(m);
         serverModel_ = nullptr;
     }
 

@@ -6,6 +6,20 @@
 #include <QApplication>
 
 
+void setAppName()
+{
+    qApp->setApplicationName("Monster Browser");
+    qApp->setApplicationVersion("Qt");
+    QString fullAppName(qApp->applicationName() + " " +
+                        qApp->applicationVersion());
+
+#ifdef DEBUG
+    qApp->setApplicationDisplayName(fullAppName + " *DEBUG BUILD*");
+#else
+    qApp->setApplicationDisplayName(fullAppName);
+#endif
+
+}
 
 
 void shutdownHandler()
@@ -14,14 +28,10 @@ void shutdownHandler()
 }
 
 
-
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    app.setApplicationName("Monster Browser");
-    app.setApplicationVersion("Qt");
-    app.setApplicationDisplayName(app.applicationName() + " " +
-                                  app.applicationVersion());
+    setAppName();
 
     QObject::connect(&app, &QApplication::aboutToQuit, shutdownHandler);
 

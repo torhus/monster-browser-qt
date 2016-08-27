@@ -15,6 +15,7 @@ TEMPLATE = app
 DESTDIR = ..
 RC_ICONS = ../icons/mb.ico
 
+debug: DEFINES += DEBUG
 
 SOURCES += main.cpp\
         mainwindow.cpp \

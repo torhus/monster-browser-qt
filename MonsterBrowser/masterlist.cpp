@@ -3,6 +3,7 @@
 #include <iostream>
 #include <utility>
 using namespace std;
+#include <QElapsedTimer>
 #include <QFile>
 #include <QMessageBox>
 #include <QtDebug>
@@ -17,6 +18,9 @@ MasterList::MasterList(const QString& server) : server_(server)
 
 void MasterList::load(const QString& defaultProtocolVersion)
 {
+    QElapsedTimer timer;
+    timer.start();
+    qInfo("Opening '%s'...", qUtf8Printable(fileName_));
     QFile f(fileName_);
 
     defaultProtocolVersion_ = defaultProtocolVersion;
@@ -44,6 +48,9 @@ void MasterList::load(const QString& defaultProtocolVersion)
             }
         }
     }
+
+    qInfo("Loaded %d servers in %.2f seconds.", size(),
+          timer.elapsed() / 1000.0);
 
     if (xml.hasError()) {
         QMessageBox::critical(nullptr, "Error",

@@ -15,7 +15,9 @@ TEMPLATE = app
 DESTDIR = ..
 RC_ICONS = ../icons/mb.ico
 
-debug: DEFINES += DEBUG
+debug {
+    DEFINES += DEBUG REVISION=\\\"$$system(hg id -i)\\\"
+}
 
 SOURCES += main.cpp\
         mainwindow.cpp \

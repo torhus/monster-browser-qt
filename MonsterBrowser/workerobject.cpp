@@ -1,5 +1,4 @@
 #include "workerobject.h"
-#include <QtDebug>
 #include <QThread>
 
 
@@ -18,7 +17,7 @@ void WorkerObject::abortAction()
 void WorkerObject::queueAction(int action)
 {
     abort_ = false;
-    qDebug() << "WorkerObject::queueAction()";
+    qDebug("WorkerObject::queueAction()");
     for (;;) {
         if (abort_)
             break;

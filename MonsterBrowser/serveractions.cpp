@@ -5,7 +5,6 @@
 #include "serveractions.h"
 #include "mainwindow.h"
 #include "servermodel.h"
-#include <QtDebug>
 
 
 ServerActions* serverActions;
@@ -37,7 +36,7 @@ void ServerActions::refreshAll()
 {
     QVector<QString> addresses;
 
-    qDebug() << "Refreshing all...";
+    qDebug("Refreshing all...");
     workerObject.abortAction();
 
     for (const auto& sd: serverView->serverModel()->master()) {
@@ -52,7 +51,7 @@ void ServerActions::refreshAll()
  */
 void ServerActions::checkForNew()
 {
-    qDebug() << "Checking for new servers...";
+    qDebug("Checking for new servers...");
     workerObject.abortAction();
     emit queueAction(actionCheckForNew);
 }
@@ -60,5 +59,5 @@ void ServerActions::checkForNew()
 
 void ServerActions::actionFinished()
 {
-    qDebug() << "ServerAction::actionFinished()";
+    qDebug("ServerAction::actionFinished()");
 }

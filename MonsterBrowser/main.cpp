@@ -13,12 +13,12 @@ void setAppName()
     QString fullAppName(qApp->applicationName() + " " +
                         qApp->applicationVersion());
 
-#ifdef DEBUG
+#ifdef QT_NO_DEBUG
+    qApp->setApplicationDisplayName(fullAppName);
+#else
     qApp->setApplicationDisplayName(QString("%1 %2 (rev. %3) *DEBUG BUILD*")
                                     .arg(fullAppName).arg(__DATE__)
                                     .arg(REVISION));
-#else
-    qApp->setApplicationDisplayName(fullAppName);
 #endif
 
 }

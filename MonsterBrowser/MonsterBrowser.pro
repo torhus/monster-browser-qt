@@ -15,6 +15,7 @@ TEMPLATE = app
 DESTDIR = ..
 RC_ICONS = ../icons/mb.ico
 
+# BUG: This is also set in release mode, which makes it useless
 debug {
     DEFINES += DEBUG REVISION=\\\"$$system(hg id -i)\\\"
 }

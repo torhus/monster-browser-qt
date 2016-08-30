@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "common.h"
 #include "masterlist.h"
 #include "serveractions.h"
 #include "servermodel.h"
@@ -30,8 +31,11 @@ void setAppName()
 void shutdownHandler()
 {
     qInfo("Shutting down...");
+
     delete mainWindow;
     delete serverActions;
+
+    shutDownLogging();
 }
 
 
@@ -40,7 +44,14 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     setAppName();
 
+    /* QApplication.exec does not always return, so we can't place shutdown
+     * code after it in main, and we can't rely on destructors for local
+     * objects in main, nor for statically allocated objects being called
+     * automatically. This seems to be the offical way to deal with the issue.
+     */
     QObject::connect(&app, &QApplication::aboutToQuit, shutdownHandler);
+
+    initLogging();
 
     serverActions = new ServerActions;
 

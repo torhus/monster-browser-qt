@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     serverdata.cpp \
     maintoolbar.cpp \
     serveractions.cpp \
-    workerobject.cpp
+    workerobject.cpp \
+    common.cpp
 
 HEADERS  += mainwindow.h \
     serverview.h \
@@ -39,7 +40,8 @@ HEADERS  += mainwindow.h \
     serverdata.h \
     maintoolbar.h \
     serveractions.h \
-    workerobject.h
+    workerobject.h \
+    common.h
 
 RESOURCES += \
     ../misc/mb.qrc

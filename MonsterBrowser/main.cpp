@@ -6,6 +6,9 @@
 #include <QApplication>
 
 
+static MainWindow* mainWindow;
+
+
 void setAppName()
 {
     qApp->setApplicationName("Monster Browser");
@@ -27,6 +30,8 @@ void setAppName()
 void shutdownHandler()
 {
     qInfo("Shutting down...");
+    delete mainWindow;
+    delete serverActions;
 }
 
 
@@ -39,8 +44,8 @@ int main(int argc, char *argv[])
 
     serverActions = new ServerActions;
 
-    MainWindow w;
-    w.show();
+    mainWindow = new MainWindow;
+    mainWindow->show();
 
     // Testing.
     MasterList master("master.smokin-guns.org");

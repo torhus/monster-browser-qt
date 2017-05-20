@@ -1,0 +1,1 @@
+This is just me trying out C++14 and Qt. Completely experimental at this point.
